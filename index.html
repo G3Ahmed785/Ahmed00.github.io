@@ -75,3 +75,23 @@
 
 </body>
 </html>
+
+
+
+
+- const N = DATA.length;
+
+.scene
+	.a3d(style=`--n: ${N}`)
+		- for(let i = 0; i < N; i++)
+			img.card(src=`https://images.unsplash.com/photo-${DATA[i]}?w=280` 
+			         style=`--i: ${i}` alt='jellyfish')
+
+//- generates this kind of HTML:
+//- <div class="scene">
+//-		<div class="a3d" style="--n: 12">
+//- 		<img class="card" src="image0.jpg" style="--i: 0" alt="image description"/>
+//- 		<img class="card" src="image1.jpg" style="--i: 1" alt="image description"/>
+//- 		<!-- the rest of the cards -->
+//- 	</div>
+//- </div>
