@@ -1,97 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <style>
-        /* Basic styling to make it look modern */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .login-container {
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        .login-container h2 {
-            text-align: center;
-            color: #333;
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #666;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 0.5rem;
-            box-sizing: border-box; /* Ensures padding doesn't affect width */
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .login-btn {
-            width: 100%;
-            padding: 0.7rem;
-            background-color: #007bff;
-            border: none;
-            border-radius: 4px;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-        .login-btn:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>متجر خُطوات | خطواتك نحو الأناقة</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="/submit-login" method="POST">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="login-btn">Sign In</button>
-        </form>
+    <div id="intro-page" class="intro-screen">
+        <div class="intro-content">
+            <h1>👟 مرحباً بك في متجر خُطوات</h1>
+            <p>أفضل الأحذية الرجالية والنسائية بجودة عالمية</p>
+            <button onclick="startShopping()">دخول المتجر</button>
+        </div>
     </div>
 
+    <div id="main-store" style="display: none;">
+        <header>
+            <h1>👟 متجر خُطوات</h1>
+            <nav>
+                <button onclick="filterProducts('all')">الكل</button>
+                <button onclick="filterProducts('men')">رجالي</button>
+                <button onclick="filterProducts('women')">حريمي</button>
+            </nav>
+            <div class="cart-container" onclick="toggleCart()">
+                🛒 السلة (<span id="cart-count">0</span>)
+            </div>
+        </header>
+
+        <main>
+            <section class="products" id="product-list">
+                </section>
+        </main>
+
+        <div id="cart-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="toggleCart()">&times;</span>
+                <h2>🛒 ملخص طلبك (Order Summary)</h2>
+                <div id="cart-items-list"></div>
+                <hr>
+                <h3>إجمالي السعر: <span id="total-price">0</span> ريال</h3>
+                
+                <div class="user-info">
+                    <h3>بيانات الشحن:</h3>
+                    <input type="text" id="user-name" placeholder="الاسم بالكامل">
+                    <input type="text" id="user-phone" placeholder="رقم الهاتف">
+                    <button class="checkout-btn" onclick="completeCheckout()">إتمام الشراء ✅</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="about">
+                    <h3>About Us</h3>
+                    <p>متجر خُطوات هو وجهتك الأولى للحصول على أحذية تجمع بين الراحة العصرية والتصميم الأنيق.</p>
+                </div>
+                <div class="contact">
+                    <h3>تواصل معنا</h3>
+                    <p>📧 Email: support@khotwat.com</p>
+                    <p>📍 الموقع: الرياض، المملكة العربية السعودية</p>
+                </div>
+            </div>
+            <p class="copy">&copy; 2024 جميع الحقوق محفوظة لمتجر خُطوات</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-- const N = DATA.length;
-
-.scene
-	.a3d(style=`--n: ${N}`)
-		- for(let i = 0; i < N; i++)
-			img.card(src=`https://images.unsplash.com/photo-${DATA[i]}?w=280` 
-			         style=`--i: ${i}` alt='jellyfish')
-
-//- generates this kind of HTML:
-//- <div class="scene">
-//-		<div class="a3d" style="--n: 12">
-//- 		<img class="card" src="image0.jpg" style="--i: 0" alt="image description"/>
-//- 		<img class="card" src="image1.jpg" style="--i: 1" alt="image description"/>
-//- 		<!-- the rest of the cards -->
-//- 	</div>
-//- </div>
