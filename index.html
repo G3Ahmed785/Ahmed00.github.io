@@ -3,148 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر خُطوات الاحترافي | Khotwat Store</title>
+    <title>متجر خُطوات | الدفع الآمن</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --main-color: #e67e22;
-            --secondary: #2c3e50;
-            --bg: #f8f9fa;
-            --white: #ffffff;
-        }
+        :root { --primary: #e67e22; --dark: #1a1a1a; --gray: #f4f4f4; }
+        body { font-family: 'Cairo', sans-serif; margin: 0; background: var(--gray); }
 
-        body { font-family: 'Cairo', sans-serif; margin: 0; background: var(--bg); color: #333; }
+        /* --- Login Section --- */
+        #login-screen { position: fixed; inset: 0; background: var(--dark); display: flex; justify-content: center; align-items: center; z-index: 10000; }
+        .login-box { background: white; padding: 30px; border-radius: 15px; width: 320px; text-align: center; }
+        .login-box input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .login-box button { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        /* --- صفحة تسجيل الدخول المتطورة --- */
-        #login-screen {
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=1200');
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: 0.8s ease-in-out;
-        }
+        /* --- Header --- */
+        header { background: var(--dark); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .nav-btns button { background: #333; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; margin-left: 5px; }
+        .nav-btns button.active { background: var(--primary); }
 
-        .login-box {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            backdrop-filter: blur(5px);
-        }
+        /* --- Grid --- */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; padding: 30px 5%; }
+        .shoe-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: 0.3s; text-align: center; }
+        .shoe-card:hover { transform: translateY(-5px); }
+        .shoe-card img { width: 100%; height: 200px; object-fit: cover; }
+        .price { color: var(--primary); font-weight: bold; font-size: 1.2rem; }
+        .add-btn { width: 100%; padding: 10px; background: var(--dark); color: white; border: none; cursor: pointer; }
 
-        .login-box h2 { color: var(--secondary); font-size: 2rem; margin-bottom: 10px; }
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #eee;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: 0.3s;
-            box-sizing: border-box;
-        }
-
-        .login-box input:focus { border-color: var(--main-color); outline: none; }
-        .login-box button {
-            width: 100%;
-            padding: 14px;
-            background: var(--main-color);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        /* --- واجهة المتجر --- */
-        header {
-            background: var(--white);
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0; z-index: 100;
-        }
-
-        .nav-btns button {
-            background: #eee;
-            border: none;
-            padding: 8px 20px;
-            margin: 0 5px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .nav-btns button.active { background: var(--main-color); color: white; }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 40px 5%;
-        }
-
-        .shoe-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.4s;
-            border: 1px solid #eee;
-        }
-
-        .shoe-card:hover { transform: translateY(-10px); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
-        .shoe-card img { width: 100%; height: 230px; object-fit: cover; }
-        .shoe-info { padding: 20px; text-align: center; }
-        .shoe-info h3 { margin: 0; font-size: 1.1rem; color: var(--secondary); }
-        .shoe-price { color: var(--main-color); font-weight: bold; font-size: 1.3rem; margin: 10px 0; }
-
-        .btn-add {
-            background: var(--secondary);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .btn-add:hover { background: #1abc9c; }
-
-        /* --- مودال السلة --- */
-        .cart-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .cart-content {
-            background: white;
-            width: 450px;
-            padding: 30px;
-            border-radius: 20px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .close-login { opacity: 0; visibility: hidden; transform: scale(0.9); }
+        /* --- Checkout & Payment Modals --- */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 25px; border-radius: 15px; width: 400px; max-width: 90%; }
+        
+        .payment-form input { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .pay-now-btn { width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
+        
+        .visa-icons { display: flex; gap: 10px; justify-content: center; margin-bottom: 15px; font-size: 1.5rem; }
     </style>
 </head>
 <body>
@@ -152,123 +43,124 @@
     <div id="login-screen">
         <div class="login-box">
             <h2>👟 تسجيل الدخول</h2>
-            <p>أدخل بياناتك للوصول إلى أحدث التشكيلات</p>
-            <input type="text" id="userInp" placeholder="اسم المستخدم (admin)">
-            <input type="password" id="passInp" placeholder="كلمة المرور (12345)">
-            <button onclick="checkLogin()">دخول المتجر</button>
-            <p id="err" style="color: red; display: none; margin-top: 10px;">بيانات غير صحيحة!</p>
+            <input type="text" id="uInp" placeholder="اسم المستخدم">
+            <input type="password" id="pInp" placeholder="كلمة المرور">
+            <button onclick="login()">دخول</button>
         </div>
     </div>
 
     <div id="main-app" style="display:none;">
         <header>
-            <div style="font-size: 1.5rem; font-weight: bold; color: var(--main-color);">خُطوات STORE</div>
+            <div style="font-size: 1.5rem; font-weight: bold;">خُطوات</div>
             <div class="nav-btns">
-                <button onclick="renderProducts('all')" class="active">الكل</button>
-                <button onclick="renderProducts('men')">رجالي</button>
-                <button onclick="renderProducts('women')">نسائي</button>
+                <button onclick="render('all')" id="all-btn" class="active">الكل</button>
+                <button onclick="render('men')" id="men-btn">رجالي</button>
+                <button onclick="render('women')" id="women-btn">نسائي</button>
             </div>
-            <div onclick="showCart()" style="cursor: pointer; font-weight: bold;">
-                🛒 السلة (<span id="cart-num">0</span>)
-            </div>
+            <div onclick="showCart()" style="cursor:pointer">🛒 السلة (<span id="count">0</span>)</div>
         </header>
 
         <div class="products-grid" id="grid"></div>
 
-        <div id="cart-modal" class="cart-modal">
-            <div class="cart-content">
-                <h3>🛒 مشترياتك</h3>
-                <div id="cart-items"></div>
+        <div id="cart-modal" class="modal">
+            <div class="modal-content">
+                <h2>🛒 سلة المشتريات</h2>
+                <div id="cart-items-list"></div>
                 <hr>
-                <h3 id="total-price">إجمالي: 0 ريال</h3>
-                <button onclick="alert('تم الطلب بنجاح!')" style="width:100%; padding:15px; background:var(--main-color); color:white; border:none; border-radius:10px; cursor:pointer;">تأكيد الشراء</button>
-                <button onclick="document.getElementById('cart-modal').style.display='none'" style="background:none; border:none; color:grey; cursor:pointer; width:100%; margin-top:10px;">إغلاق</button>
+                <h3>الإجمالي: <span id="total-val">0</span> ريال</h3>
+                <button class="pay-now-btn" style="background: var(--primary);" onclick="goToPayment()">الانتقال للدفع</button>
+                <button onclick="closeModals()" style="width:100%; background:none; border:none; color:red; margin-top:10px; cursor:pointer;">إغلاق</button>
+            </div>
+        </div>
+
+        <div id="payment-modal" class="modal">
+            <div class="modal-content">
+                <h2 style="text-align:center">💳 الدفع الآمن</h2>
+                <div class="visa-icons">🏧 💳 🔏</div>
+                <div class="payment-form">
+                    <label>الاسم على البطاقة</label>
+                    <input type="text" placeholder="John Doe">
+                    <label>رقم البطاقة</label>
+                    <input type="text" placeholder="**** **** **** 1234">
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" placeholder="MM/YY">
+                        <input type="password" placeholder="CVV">
+                    </div>
+                    <button class="pay-now-btn" onclick="finish()">دفع الآن (<span id="final-total"></span> ريال)</button>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // قاعدة بيانات المنتجات (24 منتج)
-        const db = [
-            { id: 1, name: "نايك سبورت برو", price: 320, cat: "men", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
-            { id: 2, name: "كلاسيك جلد طبيعي", price: 450, cat: "men", img: "https://images.unsplash.com/photo-1531310197839-ccf54634509e" },
-            { id: 3, name: "سنيكرز نسائي وردي", price: 280, cat: "women", img: "https://images.unsplash.com/photo-1512374382149-4332c6c021f1" },
-            { id: 4, name: "حذاء جري الترا", price: 390, cat: "men", img: "https://images.unsplash.com/photo-1560769629-975ec94e6a86" },
-            { id: 5, name: "كعب سهرة ذهبي", price: 550, cat: "women", img: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2" },
-            { id: 6, name: "أديداس كاجوال", price: 310, cat: "men", img: "https://images.unsplash.com/photo-1491553895911-0055eca6402d" },
-            { id: 7, name: "صندل صيفي مريح", price: 150, cat: "women", img: "https://images.unsplash.com/photo-1562273103-91d446733189" },
-            { id: 8, name: "بوت جبلي متين", price: 620, cat: "men", img: "https://images.unsplash.com/photo-1541597471942-b924ce99697f" },
-            { id: 9, name: "حذاء مشي طبي", price: 240, cat: "men", img: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77" },
-            { id: 10, name: "كعب أسود ملكي", price: 480, cat: "women", img: "https://images.unsplash.com/photo-1509121405288-31686083394a" },
-            { id: 11, name: "فلات كاجوال", price: 190, cat: "women", img: "https://images.unsplash.com/photo-1535043934128-cf0b28d52f95" },
-            { id: 12, name: "ريبوك أبيض", price: 340, cat: "men", img: "https://images.unsplash.com/photo-1549298916-b41d501d3772" },
-            // إضافة المزيد لتصل إلى 24
-            { id: 13, name: "نايك زوم", price: 410, cat: "men", img: "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111" },
-            { id: 14, name: "ستارز رياضي", price: 290, cat: "men", img: "https://images.unsplash.com/photo-1514989940723-e8e51635b782" },
-            { id: 15, name: "فلات ديور", price: 700, cat: "women", img: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a" },
-            { id: 16, name: "سنيكرز أحمر", price: 330, cat: "men", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
-            { id: 17, name: "هاف بوت بني", price: 420, cat: "men", img: "https://images.unsplash.com/photo-1520639889410-1df6c7526c88" },
-            { id: 18, name: "جزمة كلاسيك سوداء", price: 380, cat: "men", img: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4" },
-            { id: 19, name: "حذاء باليرينا", price: 160, cat: "women", img: "https://images.unsplash.com/photo-1491553895911-0055eca6402d" },
-            { id: 20, name: "كونفرس عالٍ", price: 280, cat: "women", img: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77" },
-            { id: 21, name: "رياضي للأطفال", price: 120, cat: "women", img: "https://images.unsplash.com/photo-1512374382149-4332c6c021f1" },
-            { id: 22, name: "حذاء صوف شتوي", price: 220, cat: "women", img: "https://images.unsplash.com/photo-1514539079130-25950c84af65" },
-            { id: 23, name: "سنيكرز ملون", price: 350, cat: "men", img: "https://images.unsplash.com/photo-1518049362265-d5b2a6467637" },
-            { id: 24, name: "صندل بحر", price: 90, cat: "men", img: "https://images.unsplash.com/photo-1562273103-91d446733189" }
+        const products = [
+            { id: 1, name: "نايك رانينج بلس", price: 320, cat: "men", img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff" },
+            { id: 2, name: "حذاء كلاسيك بني", price: 450, cat: "men", img: "https://images.unsplash.com/photo-1531310197839-ccf54634509e" },
+            { id: 3, name: "كعب سهرة وردي", price: 290, cat: "women", img: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2" },
+            { id: 4, name: "سنيكرز يومي", price: 180, cat: "men", img: "https://images.unsplash.com/photo-1560769629-975ec94e6a86" },
+            { id: 5, name: "حذاء مشي مريح", price: 220, cat: "women", img: "https://images.unsplash.com/photo-1512374382149-4332c6c021f1" },
+            { id: 6, name: "بوت جبلي", price: 550, cat: "men", img: "https://images.unsplash.com/photo-1541597471942-b924ce99697f" }
         ];
 
         let cart = [];
 
-        function checkLogin() {
-            const u = document.getElementById('userInp').value;
-            const p = document.getElementById('passInp').value;
-            if(u === 'admin' && p === '12345') {
-                document.getElementById('login-screen').classList.add('close-login');
-                setTimeout(() => {
-                    document.getElementById('login-screen').style.display = 'none';
-                    document.getElementById('main-app').style.display = 'block';
-                    renderProducts('all');
-                }, 800);
-            } else {
-                document.getElementById('err').style.display = 'block';
-            }
+        function login() {
+            if(document.getElementById('uInp').value === 'admin' && document.getElementById('pInp').value === '12345') {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('main-app').style.display = 'block';
+                render('all');
+            } else { alert("خطأ!"); }
         }
 
-        function renderProducts(cat) {
+        function render(c) {
             const grid = document.getElementById('grid');
             grid.innerHTML = '';
-            const filtered = cat === 'all' ? db : db.filter(item => item.cat === cat);
-            
+            document.querySelectorAll('.nav-btns button').forEach(b => b.classList.remove('active'));
+            document.getElementById(c + '-btn').classList.add('active');
+
+            const filtered = c === 'all' ? products : products.filter(p => p.cat === c);
             filtered.forEach(p => {
                 grid.innerHTML += `
                     <div class="shoe-card">
-                        <img src="${p.img}?w=500">
-                        <div class="shoe-info">
+                        <img src="${p.img}?w=400">
+                        <div style="padding:15px">
                             <h3>${p.name}</h3>
-                            <p class="shoe-price">${p.price} ريال</p>
+                            <p class="price">${p.price} ريال</p>
                         </div>
-                        <button class="btn-add" onclick="add(${p.id})">إضافة للسلة 🛒</button>
-                    </div>
-                `;
+                        <button class="add-btn" onclick="addToCart(${p.id})">إضافة للسلة 🛒</button>
+                    </div>`;
             });
         }
 
-        function add(id) {
-            cart.push(db.find(p => p.id === id));
-            document.getElementById('cart-num').innerText = cart.length;
+        function addToCart(id) {
+            cart.push(products.find(p => p.id === id));
+            document.getElementById('count').innerText = cart.length;
         }
 
         function showCart() {
-            const modal = document.getElementById('cart-modal');
-            const list = document.getElementById('cart-items');
-            modal.style.display = 'flex';
-            list.innerHTML = '';
+            document.getElementById('cart-modal').style.display = 'flex';
             let total = 0;
-            cart.forEach(item => {
-                total += item.price;
-                list.innerHTML += `<div style="display:flex; justify-content:space-between; margin:10px 0;"><span>${item.name}</span><b>${item.price} ر.س</b></div>`;
-            });
-            document.getElementById('total-price').innerText = `إجمالي: ${total} ريال`;
+            const list = document.getElementById('cart-items-list');
+            list.innerHTML = cart.map(i => { total += i.price; return `<p>${i.name} - ${i.price} ريال</p>`; }).join('');
+            document.getElementById('total-val').innerText = total;
+            document.getElementById('final-total').innerText = total;
+        }
+
+        function goToPayment() {
+            if(cart.length === 0) return alert("السلة فارغة!");
+            document.getElementById('cart-modal').style.display = 'none';
+            document.getElementById('payment-modal').style.display = 'flex';
+        }
+
+        function closeModals() {
+            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        }
+
+        function finish() {
+            alert("💳 جاري معالجة الدفع...\nتمت العملية بنجاح! شكراً لشرائك من خُطوات.");
+            cart = [];
+            document.getElementById('count').innerText = 0;
+            closeModals();
         }
     </script>
 </body>
